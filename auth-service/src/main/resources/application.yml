@@ -1,0 +1,28 @@
+server:
+  port: 8080
+  servlet:
+    context-path: /api/v1
+
+spring:
+  application:
+    name: life-admin-auth-service
+  jackson:
+    default-property-inclusion: non_null
+
+# JWT Configuration
+jwt:
+  secret: "LifeAdminManager2024SuperSecretKeyForJWTTokenGenerationMustBe256BitsLong"
+  access-token-expiry-ms: 900000       # 15 minutes
+  refresh-token-expiry-ms: 604800000   # 7 days
+  issuer: "life-admin-manager"
+
+# Rate Limiting (simple in-memory, swap with Redis later)
+rate-limit:
+  login-attempts: 5
+  window-minutes: 15
+
+# Logging
+logging:
+  level:
+    com.lifeadmin: DEBUG
+    org.springframework.security: INFO
